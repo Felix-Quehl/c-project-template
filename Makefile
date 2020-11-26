@@ -24,11 +24,11 @@ debug: target_name = $(name).debug
 debug: target
 
 # test build
+check: CFLAGS += -g
+check: LDFLAGS += -g
 check: target_name = $(name).test
 check: target
-	$(target_name)
-	
-	
+	./$(target_name)
 
 # link objects into program
 target: $(obj)
