@@ -25,7 +25,7 @@ debug: target
 
 # test build
 check: target_name = $(name).test
-check:
+check: target
 	$(target_name)
 	
 	
