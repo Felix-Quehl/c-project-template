@@ -9,6 +9,12 @@ It featuring a all the boiler plate code for building and testing a C89 program.
 The **make build system** is ready to use, custom **vanillia C89 testing** examples are setup and **gcov code coverage checking** is scripted in make.
 All summed up in a **automated build and test pipeline** using github actions.
 
+What is planed to be implemented:
+
+* Logging
+* API
+* Configuration File
+
 ## How to
 
 ```bash
