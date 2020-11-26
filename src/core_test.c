@@ -4,12 +4,12 @@
 
 struct TestResult core_test()
 {
-	struct TestResult result = {0, "Core Test", "success"};
+	struct TestResult result = {0, "Core Test", "passed"};
 
 	if (core() != 0)
 	{
 		result.status = 1;
-		result.info = "non zero return value";
+		result.info = "failed, non zero return value";
 		return result;
 	}
 
