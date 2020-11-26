@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include "test.h"
+#include "stdio.h"
+#include "core.h"
 
-int main(){
-	int result = test(7);
-	printf("Test=%i\n", result);
-	return 0;
+int main()
+{
+	int result = core(7);
+	return result;
 }

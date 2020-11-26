@@ -15,12 +15,16 @@ jobs:
     - uses: actions/checkout@v2
 #    - name: configure
 #      run: ./configure
-    - name: make release
+    - name: Build Release Version
       run: make clean release
-    - name: make debug
+    - name: Build Debug Version
       run: make clean debug
-    - name: make check
-      run: make clean check
+    - name: Build Tests
+      run: make clean test
+    - name: Run Tests
+      run: make check
+    - name: Show Code Coverage
+      run: make coverage
 #    - name: make distcheck
 #      run: make distcheck
     - uses: actions/upload-artifact@v2
