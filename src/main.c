@@ -3,6 +3,5 @@
 
 int main()
 {
-	int result = core(7);
-	return result;
+	return core();
 }
