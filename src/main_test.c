@@ -3,27 +3,12 @@
 
 #define TEST_COUNT 2
 
-int log_test_pass(char *name)
-{
-	return printf("TEST %s passes\n", name);
-}
-
-int log_test_fail(char *name, char *info)
-{
-	return printf("TEST %s failed: %s\n", name, info);
-}
-
-int log_summery(char *title, int run, int failed)
-{
-	int r = 0;
-
-	return r;
-}
-
 int main()
 {
+	int test_count = TEST_COUNT;
 	int test_counter = 0;
-	int failed_test_count = 0;
+	int passed = 0;
+	int faulty_test = 0;
 	double percentage = 0.0;
 	struct TestResult (*tests[TEST_COUNT])();
 
@@ -31,26 +16,24 @@ int main()
 	tests[1] = core_test;
 
 	printf("============================\n");
+	printf("TEST EXECUTION LOG\n");
+	printf("----------------------------\n");
 
-	for (test_counter = 0; test_counter < TEST_COUNT; test_counter++)
+	for (test_counter = 0; test_counter < test_count; test_counter++)
 	{
 		struct TestResult (*test)() = tests[test_counter];
-		struct TestResult result = test();
-		if (result.status)
-		{
-			log_test_fail(result.name, result.info);
-			failed_test_count++;
-		}
-		else
-		{
-			log_test_pass(result.name);
-		}
+		struct TestResult result;
+		printf("TEST %i\n", test_counter);
+		result = test();
+		if (!result.status)
+			passed++;
+		printf("\t%s Result: %s\n", result.name, result.info);
 		printf("----------------------------\n");
 	}
-	percentage = (test_counter - failed_test_count) * 100 / test_counter;
-	log_summery("App", TEST_COUNT, failed_test_count);
-	printf("Failed:\t%i/%i\n", failed_test_count, test_counter);
-	printf("Passed:\t%.2f %%\n", percentage);
+	percentage = passed * 100 / test_count;
+	printf("TEST RESULT:\t%.2f %% (%i/%i) passed\n", percentage, passed, test_count);
 	printf("============================\n");
-	return failed_test_count;
+
+	faulty_test = passed != test_count;
+	return faulty_test;
 }

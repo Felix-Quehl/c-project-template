@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 # app name
 name = app
 src_path = ./src
@@ -12,6 +14,8 @@ LDFLAGS = -I./includes
 src = $(shell find $(src_path) -name *.c ! -name *_test.c ! -name main.c)
 src_main = $(shell find $(src_path) -name main.c)
 obj = $(src:.c=.o)
+obj_gcda = $(src:.c=.gcda)
+obj_gcno = $(src:.c=.gcno)
 obj_main = $(src_main:.c=.o)
 
 # test sources and entry point
@@ -23,6 +27,16 @@ trash = $(shell find ./ -name "*.o")
 trash += $(shell find ./ -name "*.gcov") 
 trash += $(shell find ./ -name "*.gcno")
 trash += $(shell find ./ -name "*.gcda")
+
+# coverage script
+define coverage_check  =
+	total=$(grep -E '^[[:space:]]+[0-9|#]+' ./*.gcov | wc -l)
+	coverd=$(grep -E '^[[:space:]]+[1-9]+' ./*.gcov | wc -l)
+	converage=$(printf %.2f\\n "$((10**9 * $coverd*100/$total))e-9")
+	printf "Coverage = %.2f%%\\n" $converage
+	awk 'BEGIN {exit !('$converage' >= '80.0')}'
+	exit $?
+endef
 
 # default build
 all: release
@@ -44,11 +58,23 @@ test: LDFLAGS += -g -fprofile-arcs -ftest-coverage
 test: $(obj_test) $(obj)
 	$(CC) $(LDFLAGS) -o $(name).test $^
 
+# run tests
 check: ./$(name).test
 	./$(name).test
 
-coverage: ./$(name).test
-	gcov $(src) --no-output --function-summaries
+# collect and check code coverage
+coverage: coverage_collection coverage_check coverage_move
+
+# collect code coverage with gcov
+coverage_collection: $(obj_gcda) $(obj_gcno)
+	gcov $(src)
+
+# check cover coverage with bash script
+coverage_check: ; $(value coverage_check)
+
+# moves goverage files into src sir
+coverage_move:
+	mv *.gcov $(src_path)
 
 # make object files from source code
 %.o : %.c
@@ -57,3 +83,5 @@ coverage: ./$(name).test
 # remove old build files
 clean:
 	rm -rf $(trash)
+
+.ONESHELL:
