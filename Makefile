@@ -23,6 +23,13 @@ debug: LDFLAGS += -g
 debug: target_name = $(name).debug
 debug: target
 
+# test build
+check: target_name = $(name).test
+check:
+	$(target_name)
+	
+	
+
 # link objects into program
 target: $(obj)
 	$(CC) $(LDFLAGS) -o $(target_name) $^
