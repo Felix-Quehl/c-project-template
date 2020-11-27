@@ -21,6 +21,9 @@ What is planed to be implemented:
 ## How to
 
 ```bash
+# install needed packages
+sudo apt install make gcc gdb
+
 # clean relase build
 make clean release
 
