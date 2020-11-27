@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "core.h"
+#include "routine.h"
 #include "test.h"
 
-struct TestResult core_test()
+struct TestResult routine_test()
 {
-	struct TestResult result = {0, "Core Test", "passed"};
+	struct TestResult result = {0, "Routine Test", "passed"};
 
-	if (core() != 0)
+	if (routine() != 0)
 	{
 		result.status = 1;
 		result.info = "failed, non zero return value";

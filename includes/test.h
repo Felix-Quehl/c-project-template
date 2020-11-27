@@ -11,6 +11,6 @@ struct TestResult
 
 /*test cases*/
 extern struct TestResult feature_test();
-extern struct TestResult core_test();
+extern struct TestResult routine_test();
 
 #endif

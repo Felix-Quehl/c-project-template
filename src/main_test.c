@@ -13,7 +13,7 @@ int main()
 	struct TestResult (*tests[TEST_COUNT])();
 
 	tests[0] = feature_test;
-	tests[1] = core_test;
+	tests[1] = routine_test;
 
 	printf("============================\n");
 	printf("TEST EXECUTION LOG\n");

@@ -1,7 +1,7 @@
 #include "stdio.h"
-#include "core.h"
+#include "routine.h"
 
 int main()
 {
-	return core();
+	return routine();
 }
