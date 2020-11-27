@@ -1,10 +1,10 @@
 # C89 Project with Tests and Code Coverage
  
 Modern software development is more then just writing code.  
-Tooling like pipelines, testing, code analysis counts as standard.  
+Tooling like pipelines, testing, code analysis count as standard.  
 Even when aged well, C is one of the most powerful programming languages and up to the task.  
 To help programmers this reposity should offer a easy starting point for new projects.   
-It featuring a all the boiler plate code for building and testing a C89 program.  
+It featuring all the boiler plate code for building and testing a C89 program.  
 
 The **make build system** is ready to use, custom **vanillia C89 testing** examples are setup and **gcov code coverage checking** is scripted in make.
 All summed up in a **automated build and test pipeline** using github actions.
