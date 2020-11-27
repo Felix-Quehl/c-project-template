@@ -1,3 +1,6 @@
+**Pipeline Status:**   
+![C CI](https://github.com/Felix-Quehl/c89-project-template/workflows/C%20CI/badge.svg)
+
 # C89 Project with Tests and Code Coverage
  
 Modern software development is more then just writing code.  
