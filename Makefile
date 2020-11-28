@@ -27,7 +27,7 @@ src_test = $(shell find $(src_path) -name *_test.c)
 obj_test = $(src_test:.c=.o)
 
 # files to clean up
-trash = $(obj) $(name_profraw) $(name_profdata) $(name_coverage_html) $(name_coverage_txt)
+trash = $(obj) $(obj_test) $(name_profraw) $(name_profdata) $(name_coverage_html) $(name_coverage_txt)
 
 # default build
 all: release
