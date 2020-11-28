@@ -71,7 +71,7 @@ coverage_report: $(name_profraw)
 
 # check for minimum coverage
 coverage_check: $(name_profraw)
-	awk 'BEGIN {exit ('$(shell grep TOTAL $(name_coverage_txt) | grep -Po '^(TOTAL\s+)(\d+\s+)(\d+\s+)\d+\.\d+' | grep -Po '\d+\.\d+')' <= '80.0')}'	
+	awk 'BEGIN {exit ('$(shell grep TOTAL $(name_coverage_txt) | grep -Po '^(TOTAL\s+)(\d+\s+)(\d+\s+)\d+\.\d+' | grep -Po '\d+\.\d+')' <= '70.0')}'	
 
 # make object files from source code
 %.o : %.c
