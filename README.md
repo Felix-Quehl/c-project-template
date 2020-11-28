@@ -2,7 +2,7 @@
 
 # ISO9899:1990 (C89, C90, ANSI) Project Example
 
-This repository features a **example project** for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in **automated in a pipeline**.
+This repository features a **example project** for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in a **automated pipeline**.
 
 ## Why ISO9899:1990
 
