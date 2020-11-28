@@ -23,18 +23,10 @@ jobs:
     # build and upload release version
     - name: Build Release Version
       run: make clean release
-    - uses: actions/upload-artifact@v2
-      with:
-        name: app.release
-        path: app.release
 
     # build and update debug version
     - name: Build Debug Version
       run: make clean debug
-    - uses: actions/upload-artifact@v2
-      with:
-        name: app.debug
-        path: app.debug
 
     # run tests and check the code coverage 
     - name: Build Tests
@@ -43,10 +35,23 @@ jobs:
       run: make check
     - name: Show Code Coverage
       run: make coverage
+    
+    # upload test and coverage files
     - uses: actions/upload-artifact@v2
       with:
-        name: app.coverage.html
-        path: app.coverage.html
+        name: Testing and Code Coverage
+        path: |
+          app.coverage.html
+          app.coverage.txt
+          app.test
+          
+    # upload binaries
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Application Binaries
+        path: |
+          app.release
+          app.debug
 
 #    - name: make distcheck
 #      run: make distcheck
