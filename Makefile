@@ -2,6 +2,9 @@ SHELL := /bin/bash
 
 # app name
 name = app
+name_release = $(name).release
+name_debug = $(name).debug
+name_test = $(name).test
 src_path = ./src
 
 # compiler config
@@ -43,24 +46,27 @@ all: release
 
 # release target
 release: CFLAGS += -O3
-release: $(obj_main) $(obj)
-	$(CC) $(LDFLAGS) -o $(name).release $^
+release: $(name_release)
+$(name_release): $(obj_main) $(obj)
+	$(CC) $(LDFLAGS) -o $(name_release) $^
 
 # debug target
 debug: CFLAGS += -g
 debug: LDFLAGS += -g
-debug: $(obj_main) $(obj)
-	$(CC) $(LDFLAGS) -o $(name).debug $^
+debug: $(name_debug)
+$(name_debug): $(obj_main) $(obj)
+	$(CC) $(LDFLAGS) -o $(name_debug) $^
 
 # test build
 test: CFLAGS += -g -fprofile-arcs -ftest-coverage 
-test: LDFLAGS += -g -fprofile-arcs -ftest-coverage 
-test: $(obj_test) $(obj)
-	$(CC) $(LDFLAGS) -o $(name).test $^
+test: LDFLAGS += -g -fprofile-arcs -ftest-coverage
+test: $(name_test)
+$(name_test): $(obj_test) $(obj)
+	$(CC) $(LDFLAGS) -o $(name_test) $^
 
 # run tests
-check: ./$(name).test
-	./$(name).test
+check: $(name_test)
+	./$(name_test)
 
 # collect and check code coverage
 coverage: coverage_collection coverage_check coverage_move
