@@ -1,37 +1,55 @@
 **Pipeline Status:**   
 ![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/C%20CI/badge.svg?branch=main&event=push)
 
-# C89 Project with Tests and Code Coverage
- 
-Modern software development is more then just writing code.  
-Tooling like pipelines, testing, code analysis count as standard.  
-Even when aged well, C is one of the most powerful programming languages and up to the task.  
-To help programmers this reposity should offer a easy starting point for new projects.   
-It featuring all the boiler plate code for building and testing a C89 program.  
+# ISO9899:1990 (C89, C90, ANSI) Project Example
 
-The **make build system** is ready to use, custom **vanillia C89 testing** examples are setup and **gcov code coverage checking** is scripted in make.
-All summed up in a **automated build and test pipeline** using github actions.
+This repository features a **example project** for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in **automated in a pipeline**.
 
-What is planed to be implemented:
+## Why ISO9899:1990
 
-* Logging
-* API
-* Configuration File
+* portability
+* compatibility
+* little syntactic sugar
+* full control
+* low level
 
-## How to
+## How to Build
+
+Everything is automated using `make` as a build system.
+The project uses the `clang` compiler along with `llvm` as tooling for coder coverage.
+Install needed packages via your package manage.
 
 ```bash
 # install needed packages
 sudo apt install make clang llvm
+```
 
+To build various targets just type `make` and the target name like `release`, `debug` or `test`.
+It is recommented to clean build by adding `clean`.
+
+```bash
 # clean relase build
 make clean release
 
 # clean debug build
 make clean debug
 
+# clean debug build
+make clean debug
+```
+
+To executed the test you should build a `clean` `test` version and execute it with `check`.
+To check how many code is coverd by your test execute the `coverage` recipie.
+
+```bash
 # performs a clean test build,
 # executes the tests and
 # makes a code coverage terminal-prompt and check.
 make clean test check coverage
 ```
+
+## Stuff that might be added in the future
+
+* Logging
+* API
+* Configuration File
