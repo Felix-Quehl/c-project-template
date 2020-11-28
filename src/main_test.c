@@ -1,39 +1,60 @@
 #include "test.h"
 #include "stdio.h"
 
-#define TEST_COUNT 2
+/* add new tests to this array definition */
+#define __TESTS__ \
+{ \
+	feature_test, \
+	routine_test \
+}
+
+void print_welcome(int count)
+{
+	printf("============================\n");
+	printf("RUNNING %i TESTS\n", count);
+	printf("============================\n");
+}
+
+int execute_test(struct TestResult (*test)())
+{
+	struct TestResult result;
+	printf("----------------------------\n");
+	result = test();
+	printf("\t%s Result: %s\n", result.name, result.info);
+	printf("----------------------------\n");
+	return result.status;
+}
+
+void print_result(int passed, int count)
+{
+	double percentage;
+	printf("============================\n");
+	percentage = passed * 100 / count;
+	printf("TEST SUMMERY: %.2f %% (%i/%i) passed\n", percentage, passed, count);
+	printf("============================\n");
+}
 
 int main()
 {
-	int test_count = TEST_COUNT;
-	int test_counter = 0;
-	int passed = 0;
-	int faulty_test = 0;
-	double percentage = 0.0;
-	struct TestResult (*tests[TEST_COUNT])();
 
-	tests[0] = feature_test;
-	tests[1] = routine_test;
+	struct TestResult (*tests[])() = __TESTS__;
+	int count;
+	int index;
+	int passed;
+	int failed;
 
-	printf("============================\n");
-	printf("TEST EXECUTION LOG\n");
-	printf("----------------------------\n");
+	count = sizeof(tests)/sizeof(void*);
+	passed = 0;
 
-	for (test_counter = 0; test_counter < test_count; test_counter++)
-	{
-		struct TestResult (*test)() = tests[test_counter];
-		struct TestResult result;
-		printf("TEST %i\n", test_counter);
-		result = test();
-		if (!result.status)
-			passed++;
-		printf("\t%s Result: %s\n", result.name, result.info);
-		printf("----------------------------\n");
-	}
-	percentage = passed * 100 / test_count;
-	printf("TEST RESULT:\t%.2f %% (%i/%i) passed\n", percentage, passed, test_count);
-	printf("============================\n");
+	print_welcome(count);
+	
+	for (index = 0; index < count; index++)
+		passed += !execute_test(tests[index]);
 
-	faulty_test = passed != test_count;
-	return faulty_test;
+	print_result(passed, count);
+
+	failed = passed != count;
+
+	return failed;
+
 }
