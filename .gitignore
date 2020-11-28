@@ -2,6 +2,7 @@
 *.release
 *.test
 *.o
-*.gcov
-*.gcno
-*.gcda
+*.profraw
+*.profdata
+*.coverage.html
+*.coverage.txt

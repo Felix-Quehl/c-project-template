@@ -5,20 +5,21 @@ name = app
 name_release = $(name).release
 name_debug = $(name).debug
 name_test = $(name).test
+name_profraw = $(name).profraw
+name_profdata = $(name).profdata
+name_coverage_txt = $(name).coverage.txt
+name_coverage_html = $(name).coverage.html
 src_path = ./src
 
 # compiler config
-CC = gcc
-WARNIGS= -Werror -Wall -Wextra -pedantic -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wredundant-decls -Wshadow -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option
-CFLAGS = $(WARNIGS) -std=c89 -I./includes
+CC = clang
+CFLAGS = -std=c89 -I./includes
 LDFLAGS = -I./includes
 
 # sources and entry point
 src = $(shell find $(src_path) -name *.c ! -name *_test.c ! -name main.c)
 src_main = $(shell find $(src_path) -name main.c)
 obj = $(src:.c=.o)
-obj_gcda = $(src:.c=.gcda)
-obj_gcno = $(src:.c=.gcno)
 obj_main = $(src_main:.c=.o)
 
 # test sources and entry point
@@ -26,20 +27,7 @@ src_test = $(shell find $(src_path) -name *_test.c)
 obj_test = $(src_test:.c=.o)
 
 # files to clean up
-trash = $(shell find ./ -name "*.o")
-trash += $(shell find ./ -name "*.gcov") 
-trash += $(shell find ./ -name "*.gcno")
-trash += $(shell find ./ -name "*.gcda")
-
-# coverage script
-define coverage_check  =
-	total=$(grep -E '^[[:space:]]+[0-9|#]+' ./*.gcov | wc -l)
-	coverd=$(grep -E '^[[:space:]]+[1-9]+' ./*.gcov | wc -l)
-	converage=$(printf %.2f\\n "$((10**9 * $coverd*100/$total))e-9")
-	printf "Coverage = %.2f%%\\n" $converage
-	awk 'BEGIN {exit !('$converage' >= '80.0')}'
-	exit $?
-endef
+trash = $(obj) $(name_profraw) $(name_profdata) $(name_coverage_html) $(name_coverage_txt)
 
 # default build
 all: release
@@ -58,29 +46,32 @@ $(name_debug): $(obj_main) $(obj)
 	$(CC) $(LDFLAGS) -o $(name_debug) $^
 
 # test build
-test: CFLAGS += -g -fprofile-arcs -ftest-coverage 
-test: LDFLAGS += -g -fprofile-arcs -ftest-coverage
+test: CFLAGS += -g -fprofile-instr-generate -fcoverage-mapping
+test: LDFLAGS += -g -fprofile-instr-generate -fcoverage-mapping
 test: $(name_test)
 $(name_test): $(obj_test) $(obj)
 	$(CC) $(LDFLAGS) -o $(name_test) $^
 
 # run tests
 check: $(name_test)
-	./$(name_test)
+	LLVM_PROFILE_FILE="$(name_profraw)" ./$(name_test)
 
-# collect and check code coverage
-coverage: coverage_collection coverage_check coverage_move
+# profraw recipie
+$(name_profraw): check
 
-# collect code coverage with gcov
-coverage_collection: $(obj_gcda) $(obj_gcno)
-	gcov $(src)
+# coverage recipie
+coverage: coverage_report coverage_check
 
-# check cover coverage with bash script
-coverage_check: ; $(value coverage_check)
+# collect and report coverage
+coverage_report: $(name_profraw)
+	llvm-profdata merge -sparse $(name_profraw) -o $(name_profdata)
+	llvm-cov report $(name_test) -instr-profile=$(name_profdata) --ignore-filename-regex=_test.c | tee $(name_coverage_txt)
+	llvm-cov show -format=html $(name_test) -instr-profile=$(name_profdata) --ignore-filename-regex=_test.c > $(name_coverage_html)
 
-# moves goverage files into src sir
-coverage_move:
-	mv *.gcov $(src_path)
+
+# check for minimum coverage
+coverage_check: $(name_profraw)
+	awk 'BEGIN {exit ('$(shell grep TOTAL $(name_coverage_txt) | grep -Po '^(TOTAL\s+)(\d+\s+)(\d+\s+)\d+\.\d+' | grep -Po '\d+\.\d+')' <= '80.0')}'	
 
 # make object files from source code
 %.o : %.c

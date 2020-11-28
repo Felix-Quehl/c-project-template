@@ -22,7 +22,7 @@ What is planed to be implemented:
 
 ```bash
 # install needed packages
-sudo apt install make gcc gdb
+sudo apt install make clang llvm
 
 # clean relase build
 make clean release
