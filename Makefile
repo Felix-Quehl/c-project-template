@@ -13,7 +13,7 @@ src_path = ./src
 
 # compiler config
 CC = clang
-CFLAGS = -std=c89 -I./includes
+CFLAGS = -std=iso9899:1990 -ansi -Weverything -Wall -Wextra -Werror -Wpedantic -I./includes
 LDFLAGS = -I./includes
 
 # sources and entry point
