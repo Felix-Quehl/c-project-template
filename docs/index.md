@@ -1,37 +1,55 @@
-## Welcome to GitHub Pages
+**Pipeline Status:**   
+![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/C%20CI/badge.svg?branch=main&event=push)
 
-You can use the [editor on GitHub](https://github.com/Felix-Quehl/c89-project-template/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+# ISO9899:1990 (C89, C90, ANSI) Project Example
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This repository features a **example project** for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in **automated in a pipeline**.
 
-### Markdown
+## Why ISO9899:1990
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* portability
+* compatibility
+* little syntactic sugar
+* full control
+* low level
 
-```markdown
-Syntax highlighted code block
+## How to Build
 
-# Header 1
-## Header 2
-### Header 3
+Everything is automated using `make` as a build system.
+The project uses the `clang` compiler along with `llvm` as tooling for coder coverage.
+Install needed packages via your package manage.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```bash
+# install needed packages
+sudo apt install make clang llvm
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+To build various targets just type `make` and the target name like `release`, `debug` or `test`.
+It is recommented to clean build by adding `clean`.
 
-### Jekyll Themes
+```bash
+# clean relase build
+make clean release
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Felix-Quehl/c89-project-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# clean debug build
+make clean debug
 
-### Support or Contact
+# clean debug build
+make clean debug
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+To executed the test you should build a `clean` `test` version and execute it with `check`.
+To check how many code is coverd by your test execute the `coverage` recipie.
+
+```bash
+# performs a clean test build,
+# executes the tests and
+# makes a code coverage terminal-prompt and check.
+make clean test check coverage
+```
+
+## Stuff that might be added in the future
+
+* Logging
+* API
+* Configuration File
