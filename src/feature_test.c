@@ -2,30 +2,33 @@
 #include "feature.h"
 #include "test.h"
 
-struct TestResult feature_test()
+int feature_test(void)
 {
-	struct TestResult result = {0, "Feature Test", "passed"};
+	int errors;
+	int temp;
 
+	errors = 0;
+	
+	temp = feature(7);
 	if (feature(7) != 14)
 	{
-		result.status = 1;
-		result.info = "failed, result for input 7 is not 14";
-		return result;
+		printf("errors: result for 7 should be 14 and not %i\n", temp);
+		errors++;
 	}
 
-	if (feature(0) != 0)
+	temp = feature(0);
+	if (temp != 0)
 	{
-		result.status = 1;
-		result.info = "failed, result for input 0 is not 0";
-		return result;
+		printf("errors: result for 0 should be 0 and not %i\n", temp);
+		errors++;
 	}
 
-	if (feature(-1) != -2)
+	temp = feature(-1);
+	if (temp != -2)
 	{
-		result.status = 1;
-		result.info = "failed, result for input -1 is not -2";
-		return result;
+		printf("errors: result for -1 should be -2 and not %i\n", temp);
+		errors++;
 	}
 
-	return result;
+	return errors;
 }

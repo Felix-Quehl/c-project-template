@@ -1,16 +1,13 @@
 #ifndef TEST_HEADER
 #define TEST_HEADER
 
-/*struct for result of test functions*/
-struct TestResult
+struct TestInfo
 {
-    int status;
+    int (*function)(void);
     char *name;
-    char *info;
 };
 
-/*test cases*/
-extern struct TestResult feature_test();
-extern struct TestResult routine_test();
+extern int feature_test(void);
+extern int routine_test(void);
 
 #endif

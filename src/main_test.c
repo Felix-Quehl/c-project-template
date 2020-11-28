@@ -1,60 +1,55 @@
 #include "test.h"
 #include "stdio.h"
 
-/* add new tests to this array definition */
-#define __TESTS__ \
-{ \
-	feature_test, \
-	routine_test \
-}
 
-void print_welcome(int count)
+int main(void)
 {
+
+	int count;
+	int index;
+	int passed;
+	int errors;
+	double percentage;
+	struct TestInfo test;
+	struct TestInfo tests[] =
+	{
+		{feature_test, "Feature Test"},
+		{routine_test, "Routine Test"}
+	};
+
+
+	count = sizeof(tests)/sizeof(struct TestInfo);
+	passed = 0;
+
 	printf("============================\n");
 	printf("RUNNING %i TESTS\n", count);
 	printf("============================\n");
-}
+	
+	for (index = 0; index < count; index++)
+	{
+		test = tests[index];
+		printf("----------------------------\n");
+		printf("RUNNING %s\n", test.name);
+		errors = test.function();
+		if (errors == 0)
+		{
+			passed++;
+			printf("PASSED %s\n", test.name);
+		}
+		else
+		{
+			printf("ERRORS %s: %i\n", test.name, errors);
+		}
+		printf("----------------------------\n");
+	}
 
-int execute_test(struct TestResult (*test)())
-{
-	struct TestResult result;
-	printf("----------------------------\n");
-	result = test();
-	printf("\t%s Result: %s\n", result.name, result.info);
-	printf("----------------------------\n");
-	return result.status;
-}
-
-void print_result(int passed, int count)
-{
-	double percentage;
 	printf("============================\n");
 	percentage = passed * 100 / count;
 	printf("TEST SUMMERY: %.2f %% (%i/%i) passed\n", percentage, passed, count);
 	printf("============================\n");
-}
 
-int main()
-{
+	errors = passed != count;
 
-	struct TestResult (*tests[])() = __TESTS__;
-	int count;
-	int index;
-	int passed;
-	int failed;
-
-	count = sizeof(tests)/sizeof(void*);
-	passed = 0;
-
-	print_welcome(count);
-	
-	for (index = 0; index < count; index++)
-		passed += !execute_test(tests[index]);
-
-	print_result(passed, count);
-
-	failed = passed != count;
-
-	return failed;
+	return errors;
 
 }

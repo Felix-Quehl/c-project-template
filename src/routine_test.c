@@ -2,16 +2,18 @@
 #include "routine.h"
 #include "test.h"
 
-struct TestResult routine_test()
+int routine_test()
 {
-	struct TestResult result = {0, "Routine Test", "passed"};
-
-	if (routine() != 0)
+	int errors;
+	int temp;
+	
+	errors = 0;
+	temp = routine();
+	if (temp != 0)
 	{
-		result.status = 1;
-		result.info = "failed, non zero return value";
-		return result;
+		printf("error: non zero return value %i\n", temp);
+		errors++;
 	}
 
-	return result;
+	return errors;
 }
