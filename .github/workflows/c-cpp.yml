@@ -12,28 +12,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    # clone project and setup packages
     - uses: actions/checkout@v2
     - name: setup packages
       run: sudo apt install clang llvm
 #    - name: configure
 #      run: ./configure
+
+    # build and upload release version
     - name: Build Release Version
       run: make clean release
+    - uses: actions/upload-artifact@v2
+      with:
+        name: app.release
+        path: app.release
+
+    # build and update debug version
     - name: Build Debug Version
       run: make clean debug
+    - uses: actions/upload-artifact@v2
+      with:
+        name: app.debug
+        path: app.debug
+
+    # run tests and check the code coverage 
     - name: Build Tests
       run: make clean test
     - name: Run Tests
       run: make check
     - name: Show Code Coverage
       run: make coverage
+    - uses: actions/upload-artifact@v2
+      with:
+        name: app.coverage.html
+        path: app.coverage.html
+
 #    - name: make distcheck
 #      run: make distcheck
-    - uses: actions/upload-artifact@v2
-      with:
-        name: app.release
-        path: app.release
-    - uses: actions/upload-artifact@v2
-      with:
-        name: app.debug
-        path: app.debug
