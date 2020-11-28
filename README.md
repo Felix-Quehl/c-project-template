@@ -1,5 +1,5 @@
 **Pipeline Status:**   
-![C CI](https://github.com/Felix-Quehl/c89-project-template/workflows/C%20CI/badge.svg)
+![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/C%20CI/badge.svg?branch=main&event=push)
 
 # C89 Project with Tests and Code Coverage
  
