@@ -12,6 +12,20 @@ This repository features a **example project** for the **ISO9899:1990 (C89, C90,
 * full control
 * low level
 
+## Why no Frameworks and only standard tooling?
+
+Having external dependecies or foreign code can cause problems.
+So writing everthing by yourself has advandages:
+
+* Having no frameworks is a lean approche with low overhead
+* Writing own tooling help to understand the projects needs
+* Solving problems on your own increases the developers skills
+* Not having foreign code means not having to rely on others
+* Can be setup and compiled off-line
+* reduced binary size because only whats needed is implemented
+* fully compartible with your target platform
+* no exotic dependecies
+
 ## How to Build
 
 Everything is automated using `make` as a build system.
