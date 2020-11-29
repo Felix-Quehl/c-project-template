@@ -1,4 +1,4 @@
-  ![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/Continuous%20Integration/badge.svg?branch=main&event=push)
+  ![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/Continuous%20Integration/badge.svg?branch=main&event=push) ![Code Analysis](https://github.com/Felix-Quehl/c-project-template/workflows/Code%20Analysis/badge.svg?branch=main&event=push)
 
 # ISO9899:1990 (C89, C90, ANSI) Project Example
 
