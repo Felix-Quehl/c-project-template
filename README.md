@@ -53,6 +53,5 @@ To add tests search for the `struct TestInfo tests[]`  in `./src/main_test.c` an
 
 ## Stuff that might be added in the future
 
-* Logging
 * API
 * Configuration File
