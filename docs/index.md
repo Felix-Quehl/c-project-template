@@ -381,9 +381,3 @@ int feature_test(void)
 	return errors;
 }
 ```
-
-## Stuff that might be added in the future
-
-* Logging
-* API
-* Configuration File
