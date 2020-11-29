@@ -1,8 +1,8 @@
   ![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/Continuous%20Integration/badge.svg?branch=main&event=push) ![Code Analysis](https://github.com/Felix-Quehl/c-project-template/workflows/Code%20Analysis/badge.svg?branch=main&event=push)
 
-# ISO9899:1990 (C89, C90, ANSI) Project Example
+# ISO9899:1990 (C89, C90, ANSI) Linux Project Example
 
-This repository features a **example project** for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in a **automated pipeline**.
+This repository features a **example project** targeting linux for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in a **automated pipeline**.
 
 ## Why ISO9899:1990
 
