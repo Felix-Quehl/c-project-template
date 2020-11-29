@@ -10,7 +10,7 @@ int feature_test(void)
 	errors = 0;
 	
 	temp = feature(7);
-	if (feature(7) != 14)
+	if (temp != 14)
 	{
 		printf("errors: result for 7 should be 14 and not %i\n", temp);
 		errors++;
