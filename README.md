@@ -44,6 +44,9 @@ make clean debug
 
 # clean debug build
 make clean debug
+
+# test everthing
+make clean test check coverage
 ```
 
 To add tests search for the `struct TestInfo tests[]`  in `./src/main_test.c` and add a entry at the end like `{my_test_function, "Cool Test"}`.
