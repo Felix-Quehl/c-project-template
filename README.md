@@ -34,7 +34,7 @@ For a detailed tour of the code take a look at [the project page](https://felix-
 
 ```bash
 # install needed packages
-sudo apt install make clang llvm
+sudo apt install build-essential make clang llvm
 
 # clean relase build
 make clean release
