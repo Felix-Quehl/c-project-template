@@ -65,7 +65,7 @@ coverage: coverage_report coverage_check
 # collect and report coverage
 coverage_report: $(name_profraw)
 	llvm-profdata merge -sparse $(name_profraw) -o $(name_profdata)
-	llvm-cov report $(name_test) -instr-profile=$(name_profdata) | tee $(name_coverage_txt)
+	llvm-cov report $(name_test) -instr-profile=$(name_profdata) -ignore-filename-regex=test.c | tee $(name_coverage_txt)
 	llvm-cov show -format=html $(name_test) -instr-profile=$(name_profdata) > $(name_coverage_html)
 
 
