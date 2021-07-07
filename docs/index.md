@@ -1,5 +1,5 @@
 Author: Felix Quehl  
-ORCiD: https://orcid.org/0000-0003-1050-3093
+ORCiD: [https://orcid.org/0000-0003-1050-3093](https://orcid.org/0000-0003-1050-3093)
 
 ![PIPELINE](https://github.com/Felix-Quehl/c89-project-template/workflows/Continuous%20Integration/badge.svg?branch=main&event=push)![Code Analysis](https://github.com/Felix-Quehl/c-project-template/workflows/Code%20Analysis/badge.svg?branch=main&event=push)
 
