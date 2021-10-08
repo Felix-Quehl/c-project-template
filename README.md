@@ -42,7 +42,7 @@ make clean release
 # clean debug build
 make clean debug
 
-# test everthing
+# test everything
 make clean test check coverage
 ```
 
