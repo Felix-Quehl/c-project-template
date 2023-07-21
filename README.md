@@ -2,7 +2,7 @@
 
 # ISO9899:1990 (C89, C90, ANSI) Linux Project Example
 
-This repository features a **example project** targeting Linux for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, and **automated pipeline**.
+This repository features a **example project** targeting Linux for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **make files**, **test execution**.
 
 ## Why ISO9899:1990
 
