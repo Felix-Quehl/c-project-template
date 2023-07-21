@@ -2,7 +2,7 @@
 
 # ISO9899:1990 (C89, C90, ANSI) Linux Project Example
 
-This repository features a **example project** targeting Linux for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, **coverage report and check**, all in a **automated pipeline**.
+This repository features a **example project** targeting Linux for the **ISO9899:1990 (C89, C90, ANSI) language standard** with **build system**, **test execution**, and **automated pipeline**.
 
 ## Why ISO9899:1990
 
@@ -26,29 +26,17 @@ So writing everything by yourself has advantages:
 * fully compatible with your target platform
 * no exotic dependencies
 
-## Documentation
-
-For a detailed tour of the code take a look at [the project page](https://felix-quehl.github.io/c-project-template/).
-
 ## Quick Guide
 
-```bash
+```bash:
 # install needed packages
-sudo apt install build-essential make clang llvm
+sudo apt install build-essential make gcc
 
-# clean relase build
+# run tests
+cd ./project/test
+make clean test
+
+# compile executble
+cd ./project/executable
 make clean release
-
-# clean debug build
-make clean debug
-
-# test everything
-make clean test check coverage
 ```
-
-To add tests search for the `struct TestInfo tests[]`  in `./src/main_test.c` and add a entry at the end like `{my_test_function, "Cool Test"}`.
-
-## Stuff that might be added in the future
-
-* API
-* Configuration File

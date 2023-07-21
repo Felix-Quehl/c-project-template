@@ -7,7 +7,7 @@ struct TestInfo
     char *name;
 };
 
-extern int feature_test(void);
-extern int routine_test(void);
+void feature_test(void);
+void routine_test(void);
 
 #endif

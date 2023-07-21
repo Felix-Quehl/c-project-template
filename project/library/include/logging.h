@@ -1,7 +1,8 @@
 #ifndef LOGGING_HEADER
 #define LOGGING_HEADER
 
-extern void _log(char* file, int line, char* level, char* message);
+#define DATETIME_FORMAT "%y-%m-%dT%H:%M:%S"
+void _log(char* file, int line, char* level, char* message);
 
 #define LOG_FATAL(message) _log(__FILE__, __LINE__, "FATAL", message)
 #define LOG_ERROR(message) _log(__FILE__, __LINE__, "ERROR", message)
