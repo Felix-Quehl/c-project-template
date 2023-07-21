@@ -30,11 +30,17 @@ So writing everything by yourself has advantages:
 # install needed packages
 sudo apt install build-essential make gcc
 
-# run tests
-cd ./project/test
-make clean test
+# build a static library
+cd ./project/library
+make
 
-# compile executable
+# build test executable and run it
+cd ./project/test
+make
+./test
+
+# compile program executable and run it
 cd ./project/executable
-make clean release
+make
+./executable
 ```
