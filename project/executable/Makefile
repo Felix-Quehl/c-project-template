@@ -30,6 +30,6 @@ dependecy:
 
 clean: $(dependecy)
 	rm -rf $(shell find . -name '*.o' -o -name '*.so')
-	rm $(name)
+	rm -f $(name)
 
 .ONESHELL:
