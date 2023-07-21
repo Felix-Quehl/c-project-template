@@ -2,6 +2,8 @@
 *.release
 *.test
 *.o
+*.a
+*.so
 *.profraw
 *.profdata
 *.coverage.html
