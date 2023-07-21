@@ -5,22 +5,22 @@ This repository features a **example project** targeting Linux for the **ISO9899
 ## Why ISO9899:1990
 
 * portability
-* compatibility
+* Compatibility
 * little syntactic sugar
-* full control
+* Full control
 * low level
 
-## Why no Frameworks and only standard tooling?
+## Why are there no Frameworks and only standard tooling?
 
 Having external dependencies or foreign code can cause problems.
 So writing everything by yourself has advantages:
 
 * Having no frameworks is a lean approach with low overhead
-* Writing own tooling help to understand the projects needs
-* Solving problems on your own increases the developers skills
-* Not having foreign code means not having to rely on others
-* Can be setup and compiled off-line
-* reduced binary size because only whats needed is implemented
+* Writing own tooling help to understand the project's needs
+* Solving problems on your increases the developer's skills
+* Not having a foreign code means not having to rely on others
+* Can be set up and compiled off-line
+* reduced binary size because only what's needed is implemented
 * fully compatible with your target platform
 * no exotic dependencies
 
@@ -34,7 +34,7 @@ sudo apt install build-essential make gcc
 cd ./project/test
 make clean test
 
-# compile executble
+# compile executable
 cd ./project/executable
 make clean release
 ```
