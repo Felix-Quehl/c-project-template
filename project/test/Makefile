@@ -3,7 +3,7 @@ src = $(shell find . -type f -name *.c)
 obj = $(patsubst %.c,%.o,$(src))
 trash = $(shell find . -type f  -regex '^.*[\.so|\.out|\.o]$$')
 
-CFLAGS = -std=c17 -Wall -Werror -I./include -I../lib/include
+CFLAGS = -std=c89 -Wall -Werror -I./include -I../lib/include
 LDFLAGS = -L../lib 
 LIBS = -lmycode
 
