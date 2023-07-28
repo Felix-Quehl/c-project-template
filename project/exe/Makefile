@@ -1,26 +1,22 @@
-bin = test.out
+bin = hello.out
 src = $(shell find . -type f -name *.c)
 obj = $(patsubst %.c,%.o,$(src))
 trash = $(shell find . -type f  -regex '^.*[\.so|\.out|\.o]$$')
 
 CFLAGS = -std=c17 -Wall -Werror -I./include -I../lib/include
-LDFLAGS = -L../lib 
+LDFLAGS = -L../lib
 LIBS = -lmycode
 
 all: release
 
 release: CFLAGS += -O3 -s
-release: test_execution
+release: $(lib_deb) $(bin)
 
 debug: CFLAGS += -g
-debug: test_execution
-
-test_execution: $(lib_deb)  $(bin)
-	 LD_LIBRARY_PATH=../lib ./$(bin)
+debug: $(lib_deb) $(bin)
 
 %.out: $(obj)
-	$(CC) $(LDFLAGS) $^ -o $@ $(LIBS)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 clean: 
 	$(RM) $(trash)
-

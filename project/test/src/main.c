@@ -1,10 +1,21 @@
-#include "test.h"
-#include "stdio.h"
+#include <stdio.h>
+#include <assert.h>
+#include "myfunction.h"
 
-
-int main(void)
+void test_one()
 {
-	feature_test();
-	routine_test();
+	int expected = 10;
+
+	int a = 3;
+	int b = 7;
+	int actual = myfunction(a,b);
+	assert(expected == actual);
+
+}
+
+int main(int argc, char* args[])
+{
+	test_one();
+	printf("all test passed\n");
 	return 0;
 }
