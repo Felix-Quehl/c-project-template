@@ -1,4 +1,4 @@
-all:
+all: release
 
 release: lib test exe
 debug: lib test exe
